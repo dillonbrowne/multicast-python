@@ -21,20 +21,21 @@ encoded_message = str.encode(message)
 send_message = sock.sendto(encoded_message, multicast_group)
 
 
-try:
-    print("send Message")
-    send_message = sock.sendto(encoded_message, multicast_group)
 
-    while True:
+
+while True:
         print("waiting")
+
         try:
+            print("send Message")
+            send_message = sock.sendto(encoded_message, multicast_group)
             data, server = sock.recvfrom(16)
 
         except socket.timeout:
             print('timed out, no more responses')
-            break
         else:
             print("Got a response")
-finally:
-    print("closing socket")
+
+
+print("closing socket")
 sock.close()
